@@ -1,6 +1,9 @@
 package org.example.entity;
+import org.example.entity.Character;
 
 import java.util.Random;
+
+
 public class Wizard extends Character {
     private int mana;
     private int intelligence;
@@ -28,23 +31,22 @@ public class Wizard extends Character {
     }
 
     @Override
-    public void attack(Character target) {
+    public void attack(Character character) {
         Random rand = new Random();
-        boolean attemptFireball = rand.nextBoolean();
+        boolean fireball = rand.nextBoolean();
         int damage = 0;
-
-        if (attemptFireball && this.mana >= 5) {
+        if (fireball && this.mana>=5) {
             damage = this.intelligence;
-            this.mana -= 5;
+            this.mana -=5;
             System.out.println(this.getName() + " casts a Fireball! (Damage: " + damage + ")");
-        } else if (this.mana >= 1) {
+        } else if (this.mana>=1) {
             damage = 2;
             this.mana += 1;
             System.out.println(this.getName() + " uses a Staff Hit! (Damage: " + damage + ")");
-        } else {
-            this.mana += 2;
+        }else {
+            this.mana +=2;
             System.out.println(this.getName() + " has no mana! Recovers 2 mana.");
         }
-        target.setHp(target.getHp() - damage);
+        character.setHp(character.getHp() - damage);
     }
 }

@@ -4,8 +4,6 @@ import org.example.interfaces.Attacker;
 
 import java.util.UUID;
 
-import java.util.UUID;
-
 public abstract class Character implements Attacker {
     private String id;
     private String name;
@@ -13,7 +11,7 @@ public abstract class Character implements Attacker {
     private boolean isAlive;
 
     public Character(String name, int hp) {
-        this.id = UUID.randomUUID().toString(); // Auto-generated ID
+        this.id = UUID.randomUUID().toString();
         this.name = name;
         this.hp = hp;
         this.isAlive = true;

@@ -1,5 +1,4 @@
 package org.example.interfaces;
-
 import org.example.entity.Character;
 
 public interface Attacker {

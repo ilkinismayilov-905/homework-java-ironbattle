@@ -1,17 +1,18 @@
 package org.example;
 
 import org.example.entity.BattleSimulator;
+import org.example.entity.Character;
 import org.example.entity.Warrior;
 import org.example.entity.Wizard;
-import java.util.Scanner;
-import org.example.entity.Character;
 
 import java.util.Random;
+import java.util.Scanner;
 
-
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    private static Scanner scanner = new Scanner(System.in);
-    private static Random random = new Random();
+    private static final Scanner SC = new Scanner(System.in);
+    private static final Random RANDOM = new Random();
 
     public static void main(String[] args) {
         Character player1 = null;
@@ -19,17 +20,14 @@ public class Main {
         boolean isRunning = true;
 
         while (isRunning) {
-            System.out.println("\n==================================");
-            System.out.println("       RPG BATTLE SIMULATOR       ");
-            System.out.println("==================================");
-            System.out.println("1. Create Player 1 " + (player1 != null ? "[" + player1.getName() + " Ready]" : "[Not Created]"));
-            System.out.println("2. Create Player 2 " + (player2 != null ? "[" + player2.getName() + " Ready]" : "[Not Created]"));
-            System.out.println("3. Start Battle");
-            System.out.println("4. Exit");
+            System.out.println("\nWelcome to the Battle Game!\n");
+            System.out.println("1) Create Player 1 " + (player1 != null ? "[" + player1.getName() + " Ready]" : "[Not Created]"));
+            System.out.println("2) Create Player 2 " + (player2 != null ? "[" + player2.getName() + " Ready]" : "[Not Created]"));
+            System.out.println("3) Start Battle ");
+            System.out.println("4) Exit Battle ");
             System.out.print("Choose an option: ");
 
-            String choice = scanner.nextLine();
-
+            String choice = SC.nextLine();
             switch (choice) {
                 case "1":
                     player1 = createCharacter(1);
@@ -39,8 +37,8 @@ public class Main {
                     break;
                 case "3":
                     if (player1 != null && player2 != null) {
-                        BattleSimulator simulator = new BattleSimulator();
-                        simulator.startBattle(player1, player2);
+                        BattleSimulator battleSimulator = new BattleSimulator();
+                        battleSimulator.startBattle(player1, player2);
 
                         player1 = null;
                         player2 = null;
@@ -49,14 +47,15 @@ public class Main {
                     }
                     break;
                 case "4":
-                    System.out.println("Exiting simulator. Goodbye!");
+                    System.out.println("Exiting battle...");
                     isRunning = false;
                     break;
                 default:
                     System.out.println("Invalid choice. Please try again.");
             }
         }
-        scanner.close();
+        SC.close();
+
     }
 
     private static Character createCharacter(int playerNum) {
@@ -67,7 +66,7 @@ public class Main {
 
         int type = -1;
         try {
-            type = Integer.parseInt(scanner.nextLine());
+            type = Integer.parseInt(SC.nextLine());
             if (type != 1 && type != 2) throw new NumberFormatException();
         } catch (NumberFormatException e) {
             System.out.println("Invalid class selection. Creation cancelled.");
@@ -75,18 +74,18 @@ public class Main {
         }
 
         System.out.print("Enter Character Name: ");
-        String name = scanner.nextLine();
+        String name = SC.nextLine();
 
         if (type == 1) {
-            int hp = random.nextInt(101) + 100;
-            int stamina = random.nextInt(41) + 10;
-            int strength = random.nextInt(10) + 1;
+            int hp = RANDOM.nextInt(101) + 100;
+            int stamina = RANDOM.nextInt(41) + 10;
+            int strength = RANDOM.nextInt(10) + 1;
             System.out.println("Player " + playerNum + " (Warrior) created successfully!");
             return new Warrior(name, hp, stamina, strength);
         } else {
-            int hp = random.nextInt(51) + 50;
-            int mana = random.nextInt(41) + 10;
-            int intelligence = random.nextInt(50) + 1;
+            int hp = RANDOM.nextInt(51) + 50;
+            int mana = RANDOM.nextInt(41) + 10;
+            int intelligence = RANDOM.nextInt(50) + 1;
             System.out.println("Player " + playerNum + " (Wizard) created successfully!");
             return new Wizard(name, hp, mana, intelligence);
         }
