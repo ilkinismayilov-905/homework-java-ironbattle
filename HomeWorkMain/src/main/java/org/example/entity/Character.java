@@ -33,6 +33,8 @@ public abstract class Character implements Attacker {
         return isAlive;
     }
 
+
+
     public void setId(String id) {
         this.id = id;
     }
