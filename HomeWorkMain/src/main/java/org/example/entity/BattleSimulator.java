@@ -7,6 +7,9 @@ public class BattleSimulator {
         Character c1 = initCharacter(player1);
         Character c2 = initCharacter(player2);
 
+
+
+
         boolean battleOver = false;
 
         int round = 1;
